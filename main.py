@@ -71,7 +71,14 @@ def sensor_messung():
     humidity = Math.round(humidity*100)/100
 
 def on_forever():
-    pass
+    if sensor_is_bereit():
+        sensor_messung()
+        basic.show_string("Temperatur: " + str((temperature)))
+        basic.show_string("Luftfeuchtigkeit: " + str((humidity)))
+        basic.show_string("CO2: " + str((co2)))
+    else:
+        basic.show_string("Sensor nicht bereit")
+    basic.pause(1000)
 
 sensor_initialisieren()
 basic.forever(on_forever)

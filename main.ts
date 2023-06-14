@@ -63,5 +63,14 @@ function sensor_messung() {
 
 sensor_initialisieren()
 basic.forever(function on_forever() {
+    if (sensor_is_bereit()) {
+        sensor_messung()
+        basic.showString("Temperatur: " + ("" + temperature))
+        basic.showString("Luftfeuchtigkeit: " + ("" + humidity))
+        basic.showString("CO2: " + ("" + co2))
+    } else {
+        basic.showString("Sensor nicht bereit")
+    }
     
+    basic.pause(1000)
 })
